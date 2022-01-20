@@ -1,0 +1,13 @@
+
+.bth-login{
+    width: 70px;
+    margin: 10px 0;
+}
+.bth-signup{
+    width: 70px;
+    margin: 10px 0;
+}
+.bth-search{
+    border: 1px solid;
+    border-radius: 15%;
+}

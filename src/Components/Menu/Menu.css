@@ -1,0 +1,11 @@
+.menu{
+    height: 46px;
+    background-color: rgb(63, 81, 181);
+}
+.list-menu{
+    background-color: rgb(63, 81, 181);
+    color: #fff;
+}
+.list-menu :hover{
+    color: red;
+}
