@@ -1,14 +1,15 @@
 import React from 'react';
-import { Row, Col, Divider, Button } from 'antd';
+import { Row, Col, Button } from 'antd';
 import './Profile.css';
-import { Container } from 'react-bootstrap'
+import {Container, Nav, } from 'react-bootstrap'
+
 
 
 
 function Profile() {
     return (
         <div className='profile' >
-            <Container style={{ backgroundColor: "rgba(63, 81, 181, 0.5)", backgroundImage: `url("https://jumbo.g-axon.work/images/profile-bg-img.png")` }}>
+            <Container className='background' style={{ backgroundColor: "rgba(63, 81, 181, 0.5)", backgroundImage: `url("https://jumbo.g-axon.work/images/profile-bg-img.png")` }}>
                 <Row className='contact' gutter={16}>
                     <Col className="gutter-row item-contact" span={6}>
                         <div className="item-img">
@@ -21,10 +22,21 @@ function Profile() {
                     </Col>
                     <Col className="gutter-row" span={6}>
                         <div className='button'>
-                            <Button className='bth-followers' ghost>2K+<br/>Followers</Button>
-                            <Button className='bth-following' ghost>69<br/>Following</Button>
-                            <Button className='bth-friends' ghost>999<br/>Friends</Button>
+                            <Button className='bth-followers' ghost>2K+<br />Followers</Button>
+                            <Button className='bth-following' ghost>69<br />Following</Button>
+                            <Button className='bth-friends' ghost>999<br />Friends</Button>
                         </div>
+                    </Col>
+                </Row>
+                <Row className='menu-contact'>
+                    <Col span={9}>
+                        <Nav className="me-auto">
+                            <Nav.Link style={{color:"#fff"}} href="#home">Timeline</Nav.Link>
+                            <Nav.Link style={{color:"#fff"}} href="#features">About</Nav.Link>
+                            <Nav.Link style={{color:"#fff"}} href="#pricing">Photos</Nav.Link>
+                            <Nav.Link style={{color:"#fff"}} href="#pricing">Friends</Nav.Link>
+                            <Nav.Link style={{color:"#fff"}} href="#pricing">More</Nav.Link>
+                        </Nav>
                     </Col>
                 </Row>
             </Container>

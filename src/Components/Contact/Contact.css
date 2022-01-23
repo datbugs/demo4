@@ -1,0 +1,28 @@
+.contact-info{
+    position: relative;
+    top: -50px;
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.title-contact{
+    margin-top: 20px;
+}
+.item-contact{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 0;
+}
+p{
+    margin-bottom: 0;
+}
+.mail{
+    margin-left: 20px;
+}
+.fb{
+    margin-left: 20px;
+}
+.phone{
+    margin-left: 20px;
+}

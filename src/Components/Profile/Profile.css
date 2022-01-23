@@ -16,9 +16,12 @@
     flex-direction: row;
 }
 .contact{
-    height: 270px;
+    height: 150px;
     justify-content: space-between;
     align-items: center;
+}
+.background{
+    height: 270px;
 }
 .button{
     align-items: center;
@@ -31,4 +34,11 @@
 }
 .bth-friends{
     border: none;
+}
+.menu-contact{
+    justify-content: end;
+}
+.me-auto{
+    color: #fff;
+
 }

@@ -1,0 +1,24 @@
+.friends{
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 20px;
+}
+.text-friends{
+    display: flex;
+    justify-content: space-between;
+}
+.text-friends p{
+    align-self: center;
+
+}
+.friend-img{
+    text-align: center;
+    position: relative;
+    top: 10px
+}
+.friend-img p{
+    position: relative;
+    top: 10px
+}
+
