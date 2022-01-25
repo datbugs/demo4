@@ -9,7 +9,9 @@ import {Container, Nav, } from 'react-bootstrap'
 function Profile() {
     return (
         <div className='profile' >
-            <Container className='background' style={{ backgroundColor: "rgba(63, 81, 181, 0.5)", backgroundImage: `url("https://jumbo.g-axon.work/images/profile-bg-img.png")` }}>
+            <div className='background'>
+            <div className="background-color">
+                <Container>
                 <Row className='contact' gutter={16}>
                     <Col className="gutter-row item-contact" span={6}>
                         <div className="item-img">
@@ -28,6 +30,7 @@ function Profile() {
                         </div>
                     </Col>
                 </Row>
+                </Container>
                 <Row className='menu-contact'>
                     <Col span={9}>
                         <Nav className="me-auto">
@@ -39,7 +42,9 @@ function Profile() {
                         </Nav>
                     </Col>
                 </Row>
-            </Container>
+            </div>
+            </div>
+            
         </div>
     );
 }

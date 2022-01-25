@@ -22,6 +22,14 @@
 }
 .background{
     height: 270px;
+    width: 1250px;
+    margin: 0 auto;
+    background-image: url("https://jumbo.g-axon.work/images/profile-bg-img.png");
+}
+.background-color{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(63, 81, 181, 0.5);
 }
 .button{
     align-items: center;
