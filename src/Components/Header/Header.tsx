@@ -22,8 +22,8 @@ function Header() {
                 <img src="https://jumbo.g-axon.work/images/logo.png" alt=""/>  
               </Navbar.Brand>
              
-              <Navbar.Collapse id="responsive-navbar-nav" className=''>
-                <Nav className="me-auto">
+              <Navbar.Collapse id="responsive-navbar-nav" className='bth'>
+                <Nav className="me-auto bth-search">
                 <Form className="d-flex">
                   <FormControl
                     type="search"

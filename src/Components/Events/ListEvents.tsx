@@ -34,13 +34,13 @@ export const ListEvents = () => {
     ]
 
     return (
-        <Row style={{ rowGap: "35px" }} className='content-events'>
+        <div style={{ rowGap: "35px" }} className='content-events'>
             {
                 listEvents.map((item, index) => {
                     return (
 
-                        <>
-                            <Col className='item' span={13}>
+                        <Row className='item-content'>
+                            <Col className='item' span={11}>
                                 <img src={item.img} alt="" />
                                 <div className='item-events'>
                                     <p className='job'>{item.job}</p>
@@ -51,23 +51,26 @@ export const ListEvents = () => {
                                     </div>
                                 </div>
                             </Col>
-                            <Col span={5}>
-                                <div className='time-location'>
-                                    <HomeFilled />
-                                    <p>{item.time}</p>
-                                </div>
-                                <div className='checkin'>
-                                    <button className='bth-checkin'>
-                                        <p>CHECK IN DETAIL</p>
+                            <Col span={7}>
+                                <div className='time-bth'>
+                                    <div className='time-location'>
                                         <HomeFilled />
-                                    </button>
+                                        <p>{item.time}</p>
+                                    </div>
+                                    <div className='checkin'>
+                                        <button className='bth-checkin'>
+                                            <p>CHECK IN DETAIL</p>
+                                            <HomeFilled />
+                                        </button>
+                                    </div>
                                 </div>
+                                
                             </Col>
-                        </>
+                        </Row>
 
                     )
                 })
             }
-        </Row>
+        </div>
     );
 };

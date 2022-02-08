@@ -9,3 +9,6 @@
 .list-menu :hover{
     color: red;
 }
+#navbarScrollingDropdown{
+    margin: 0 10px;
+}

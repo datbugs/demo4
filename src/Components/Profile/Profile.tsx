@@ -12,7 +12,7 @@ function Profile() {
             <div className='background'>
             <div className="background-color">
                 <Container>
-                <Row className='contact' gutter={16}>
+                <Row className='contact' gutter={24}>
                     <Col className="gutter-row item-contact" span={6}>
                         <div className="item-img">
                             <img style={{ width: "80px", borderRadius: "50%" }} src="https://jumbo.g-axon.work/images/avatar/avatar6.jpg" alt="" />
@@ -22,7 +22,7 @@ function Profile() {
                             <p>Florida, USA</p>
                         </div>
                     </Col>
-                    <Col className="gutter-row" span={6}>
+                    <Col className="gutter-row contact-right" span={18}>
                         <div className='button'>
                             <Button className='bth-followers' ghost>2K+<br />Followers</Button>
                             <Button className='bth-following' ghost>69<br />Following</Button>
@@ -32,7 +32,7 @@ function Profile() {
                 </Row>
                 </Container>
                 <Row className='menu-contact'>
-                    <Col span={9}>
+                    <Col span={18}>
                         <Nav className="me-auto">
                             <Nav.Link style={{color:"#fff"}} href="#home">Timeline</Nav.Link>
                             <Nav.Link style={{color:"#fff"}} href="#features">About</Nav.Link>

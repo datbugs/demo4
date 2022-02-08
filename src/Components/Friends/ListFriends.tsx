@@ -38,11 +38,13 @@ export const ListFriends = () => {
                 listFriends.map((item, index) => {
                     return (
                         <Col className='friend-img' span={7}>
+                            <button className='bth-friends'>
                             <img src={item.img} alt="" />
                             <div className='friend-content'>
                                 <span></span>
                                 <p className='name-friends'>{item.name}</p>
                             </div>
+                            </button>
                         </Col>
                     )
                 })

@@ -15,7 +15,7 @@ function About() {
                 <Col span={3}>
                     <Title className='title-contact' level={5}>About</Title>
                 </Col>
-                <Col span={6}>
+                <Col span={21}>
                     <Nav className="me-auto">
                         <Nav.Link style={{ color: "#000" }} href="#home">Overview</Nav.Link>
                         <Nav.Link style={{ color: "#000" }} href="#features">Work</Nav.Link>
@@ -27,7 +27,7 @@ function About() {
             <Row className='about-item'>
                 <Col span={8}>
                     <div className='item-icon'>
-                        <HomeFilled  style={{ fontSize: '25px'}} />
+                        <HomeFilled style={{ fontSize: '25px' }} />
                         <div className='content-item'>
                             <p className='content-item-first'>Works at</p>
                             <p className='content-item-second'>G-axon Tech Pvt. Ltd.</p>
@@ -36,7 +36,7 @@ function About() {
                 </Col>
                 <Col span={8}>
                     <div className='item-icon'>
-                        <HomeFilled style={{ fontSize: '25px'}}/>
+                        <HomeFilled style={{ fontSize: '25px' }} />
                         <div className='content-item'>
                             <p className='content-item-first'>Birthday</p>
                             <p className='content-item-second'>Oct 25, 1994</p>
@@ -45,7 +45,7 @@ function About() {
                 </Col>
                 <Col span={8}>
                     <div className='item-icon'>
-                        <HomeFilled style={{ fontSize: '25px'}}/>
+                        <HomeFilled style={{ fontSize: '25px' }} />
                         <div className='content-item'>
                             <p className='content-item-first'>Went to</p>
                             <p className='content-item-second'>Oxford University</p>
@@ -56,7 +56,7 @@ function About() {
             <Row className='about-item'>
                 <Col span={8}>
                     <div className='item-icon'>
-                        <HomeFilled style={{ fontSize: '25px'}}/>
+                        <HomeFilled style={{ fontSize: '25px' }} />
                         <div className='content-item'>
                             <p className='content-item-first'>lives in</p>
                             <p className='content-item-second'>Switzerland</p>
@@ -65,10 +65,12 @@ function About() {
                 </Col>
                 <Col span={8}>
                     <div className='item-icon'>
-                        <HomeFilled style={{ fontSize: '25px'}}/>
+                        <HomeFilled style={{ fontSize: '25px' }} />
                         <div className='content-item'>
                             <p className='content-item-first'>4 Family Members</p>
-                            <p className='content-item-second'>bca</p>
+                            <div className="member">
+                                abc
+                            </div>
                         </div>
                     </div>
                 </Col>

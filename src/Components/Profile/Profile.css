@@ -20,6 +20,9 @@
     justify-content: space-between;
     align-items: center;
 }
+.contact-right{
+    flex: none;
+}
 .background{
     height: 270px;
     width: 1250px;
@@ -49,4 +52,22 @@
 .me-auto{
     color: #fff;
 
+}
+@media screen and (max-width: 1200px) {
+    .profile{
+        color: #fff;
+        width: 100%;
+        
+    }
+    .button{
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+    }
+    .background{
+        height: 270px;
+        width: 100%;
+        margin: 0 auto;
+        background-image: url("https://jumbo.g-axon.work/images/profile-bg-img.png");
+    }
 }
