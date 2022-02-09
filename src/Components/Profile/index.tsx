@@ -1,19 +1,16 @@
 import React from 'react';
 import { Row, Col, Button } from 'antd';
-import './Profile.css';
+import './style.css';
 import {Container, Nav, } from 'react-bootstrap'
 
-
-
-
-function Profile() {
+export const Profile = () => {
     return (
         <div className='profile' >
             <div className='background'>
             <div className="background-color">
                 <Container>
                 <Row className='contact' gutter={24}>
-                    <Col className="gutter-row item-contact" span={6}>
+                    <Col className="gutter-row item-contact" span={10}>
                         <div className="item-img">
                             <img style={{ width: "80px", borderRadius: "50%" }} src="https://jumbo.g-axon.work/images/avatar/avatar6.jpg" alt="" />
                         </div>
@@ -22,7 +19,7 @@ function Profile() {
                             <p>Florida, USA</p>
                         </div>
                     </Col>
-                    <Col className="gutter-row contact-right" span={18}>
+                    <Col className="gutter-row contact-right" span={14}>
                         <div className='button'>
                             <Button className='bth-followers' ghost>2K+<br />Followers</Button>
                             <Button className='bth-following' ghost>69<br />Following</Button>
@@ -44,9 +41,6 @@ function Profile() {
                 </Row>
             </div>
             </div>
-            
         </div>
     );
 }
-
-export default Profile;

@@ -1,12 +1,11 @@
-import React from 'react';
 import { Row, Col, Typography } from 'antd';
 import { Container } from 'react-bootstrap';
 import { MailTwoTone, FacebookFilled, PhoneTwoTone } from '@ant-design/icons';
-import "./Contact.css"
+import "./style.css"
 
 const { Title } = Typography;
 
-function Contact() {
+export const Contact = () => {
   return (
     <Container className='contact-info'>
       <Title className='title-contact' level={5}>Contact</Title>
@@ -18,7 +17,7 @@ function Contact() {
             </div>
             <div className='mail'>
               <p>Email</p>
-              <a>datbugs807@gmail.com</a>
+              <p>datbugs807@gmail.com</p>
             </div>
           </div>
           <div className='item-contact'>
@@ -27,7 +26,7 @@ function Contact() {
             </div>
             <div className='fb'>
               <p>FaceBook</p>
-              <a>facebook.com/datboxit</a>
+              <p>facebook.com/datboxit</p>
             </div>
           </div>
           <div className='item-contact'>
@@ -36,7 +35,7 @@ function Contact() {
             </div>
             <div className='phone'>
               <p>Phone</p>
-              <a>0822626069</a>
+              <p>0822626069</p>
             </div>
           </div>
         </Col>
@@ -44,5 +43,3 @@ function Contact() {
     </Container>
   );
 }
-
-export default Contact;

@@ -2,12 +2,12 @@ import React from 'react';
 import { Container, Nav } from 'react-bootstrap';
 import { HomeFilled } from '@ant-design/icons';
 import { Row, Col, Typography } from 'antd';
-import './About.css'
+import './style.css'
 
 const { Title } = Typography;
 
 
-function About() {
+export const  About = () => {
     return (
         <Container className='about'>
 
@@ -68,9 +68,7 @@ function About() {
                         <HomeFilled style={{ fontSize: '25px' }} />
                         <div className='content-item'>
                             <p className='content-item-first'>4 Family Members</p>
-                            <div className="member">
-                                abc
-                            </div>
+
                         </div>
                     </div>
                 </Col>
@@ -79,5 +77,3 @@ function About() {
         </Container>
     );
 }
-
-export default About;

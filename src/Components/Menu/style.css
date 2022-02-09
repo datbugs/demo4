@@ -1,0 +1,18 @@
+.menu{
+    height: 46px;
+    background-color: rgb(63, 81, 181);
+}
+#navbarScrollingDropdown{
+    margin: 0 10px;
+}
+.menu .rp-menu{
+    display: none;
+}
+@media screen and (max-width: 1200px) {
+    .menu .item-menu{
+        display: none;
+    }
+    .menu .rp-menu{
+        display: flex;
+    }
+}

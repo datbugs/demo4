@@ -1,15 +1,11 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { Row, Col, Typography, Button } from 'antd';
-import { HomeFilled } from '@ant-design/icons';
-import './Events.css'
+import { Row, Col, Typography} from 'antd';
+import './style.css'
 import { ListEvents } from './ListEvents';
 
 const { Title } = Typography;
-
-
-
-function Events() {
+export const Events = () => {
     return (
         <Container className='about'>
 
@@ -23,5 +19,3 @@ function Events() {
         </Container>
     );
 }
-
-export default Events;

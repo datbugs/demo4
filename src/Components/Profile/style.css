@@ -71,3 +71,23 @@
         background-image: url("https://jumbo.g-axon.work/images/profile-bg-img.png");
     }
 }
+@media screen and (max-width: 600px) {
+    .contact{
+        height: 210px;
+        display: flex;
+        flex-direction: column;
+    }
+    .contact .item-contact{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .menu-contact{
+        margin-top: 30px;
+        margin-bottom: 20px;
+        justify-content: center;
+    }
+    .background{
+        height: 350px;
+    }
+}

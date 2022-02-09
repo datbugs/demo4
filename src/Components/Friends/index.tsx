@@ -1,13 +1,11 @@
 import React from 'react';
-import { Row, Col, Typography } from 'antd';
+import {Typography } from 'antd';
 import { Container } from 'react-bootstrap';
-import './Friends.css'
+import './style.css'
 import { ListFriends } from './ListFriends';
 
 const { Title } = Typography;
-
-
-function Friends() {
+export const Friends = () => {
     return (
         <Container className='friends'>
             <div className='text-friends'>
@@ -18,5 +16,3 @@ function Friends() {
         </Container>
     );
 }
-
-export default Friends;

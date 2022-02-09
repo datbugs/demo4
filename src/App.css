@@ -42,5 +42,10 @@
       justify-content: center;
       margin: 0;
     }
+    .header-app{
+      display: flex;
+      flex-direction: row-reverse;
+      background-color: #f4f4f7;
+    }
 
 }

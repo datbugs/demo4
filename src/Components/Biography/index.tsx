@@ -1,18 +1,18 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { Row, Col, Typography } from 'antd';
-import './Biography.css'
+import './style.css'
 
 const { Title } = Typography;
 
 
 
-function Biography() {
+export const Biography = () => {
     return (
         <Container className='about'>
 
             <Row className='menu-about'>
-                <Col span={3}>
+                <Col span={5}>
                     <Title className='title-contact' level={5}>Biography</Title>
                 </Col>
             </Row>
@@ -28,5 +28,3 @@ function Biography() {
         </Container>
     );
 }
-
-export default Biography;
