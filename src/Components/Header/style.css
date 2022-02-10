@@ -1,4 +1,7 @@
-
+.content-header{
+    display: flex;
+    justify-content: space-between;
+}
 .bth-login{
     width: 70px;
     margin: 10px 0;
@@ -10,6 +13,11 @@
 .item-icon{
     font-size: 30px;
     margin-inline: 5px;
+}
+.number-like{
+    display: flex;
+    flex-direction: row;
+    
 }
 
 

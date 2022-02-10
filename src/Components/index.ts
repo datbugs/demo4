@@ -8,3 +8,4 @@ export * from './Header';
 export * from './Menu';
 export * from './Pictures';
 export * from './Profile';
+export * from './ListContact';
