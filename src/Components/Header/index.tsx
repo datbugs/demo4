@@ -3,12 +3,9 @@ import { Button } from 'antd';
 import { AppstoreOutlined, WechatOutlined, BellOutlined, LikeTwoTone } from '@ant-design/icons';
 import './style.css';
 import { Navbar, Container, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap';
-import { RootState } from '../Profile/Stores';
-import { useSelector } from 'react-redux';
 
 
 export const Header = () => {
-  const count = useSelector((state: RootState) => state.counter.value)
 
 
   return (
@@ -16,7 +13,7 @@ export const Header = () => {
       <Container className='content-header'>
         <div className='number-like'>
         <LikeTwoTone />
-        <p>{count}</p>
+       
         </div>
         <div className="d-flex justify-content-end">
           <Button className='bth-login' type="text">Login</Button>

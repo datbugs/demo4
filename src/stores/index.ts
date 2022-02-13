@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './counterSlide';
+import counterReducer from '../Components/ListContact/Slide'
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    couterlist: counterReducer,
   },
 })
 

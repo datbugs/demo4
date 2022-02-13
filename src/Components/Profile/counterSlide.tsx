@@ -1,11 +1,20 @@
 import { createSlice} from '@reduxjs/toolkit'
+import { CouterFollow } from './thunk'
 
 export interface CounterState {
-  value: number
+  value: number;
+  follow: number;
+  user: {
+    name: string;
+    id: number;
+    email: string;
+  } | null;
 }
 
 const initialState: CounterState = {
   value: 69,
+  follow: 10,
+  user: null,
 }
 
 export const counterSlice = createSlice({
@@ -16,6 +25,14 @@ export const counterSlice = createSlice({
       state.value += 1
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(CouterFollow.fulfilled, (state, action) =>{
+      return {
+        ...state,
+        follow: action.payload,
+      };
+    })
+  }
 })
 export const { increment  } = counterSlice.actions
 
