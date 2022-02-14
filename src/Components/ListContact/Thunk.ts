@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ITodoItem } from "./interface";
+import { IUserItem } from "./interface";
 
 export const CouterFriend = createAsyncThunk<number, number>("List/CouterFriend", (param) => {
     return param;
@@ -7,9 +7,15 @@ export const CouterFriend = createAsyncThunk<number, number>("List/CouterFriend"
 export const CouterFollow = createAsyncThunk<number, number>("List/CouterFollow", (param) => {
     return param;
 })
-export const AddTodo = createAsyncThunk<ITodoItem, ITodoItem>("List/AddTodo", (param) => {
+export const AddUser = createAsyncThunk<IUserItem, IUserItem>("List/AddTodo", (param) => {
     return param;
 }) 
-export const DeleteTodo = createAsyncThunk<string, string>("List/DeleteTodo", (param) => {
+export const DeleteUser = createAsyncThunk<string, string>("List/DeleteUser", (param) => {
+    return param;
+}) 
+export const Search = createAsyncThunk<string, string>("List/SearchUser", (param) => {
+    return param;
+}) 
+export const UpdateUser = createAsyncThunk<IUserItem, IUserItem>("List/UpdateUser", (param) => {
     return param;
 }) 

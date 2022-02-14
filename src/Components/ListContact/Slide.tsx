@@ -1,22 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "stores";
-import { ITodoItem } from "./interface";
-import { CouterFriend, CouterFollow, AddTodo, DeleteTodo } from './Thunk'
+import { getTextOfJSDocComment } from "typescript";
+import { IUserItem } from "./interface";
+import { CouterFriend, CouterFollow, AddUser, DeleteUser, UpdateUser } from './Thunk'
 
 
 
 export interface ListState {
   follow: number,
   friend: number,
-  todos: ITodoItem[],
-
+  users: IUserItem[],
 
 }
 
 const initialState: ListState = {
   follow: 0,
   friend: 0,
-  todos: [],
+  users: [
+    {
+      id: "1a",
+      name: "Đạt",
+    },
+    {
+      id: "1b",
+      name: "Đức",
+    },
+    {
+      id: "1c",
+      name: "Dũng",
+    },
+  ],
 }
 
 const listSlice = createSlice({
@@ -37,17 +50,27 @@ const listSlice = createSlice({
           friend: action.payload,
         };
       })
-      .addCase(AddTodo.fulfilled, (state, action) => {
+      .addCase(AddUser.fulfilled, (state, action) => {
         console.log(action.payload)
         return {
           ...state,
-          todos : [...state.todos, action.payload]
-        }
+          users: [...state.users, action.payload]
+        };
       })
-      .addCase(DeleteTodo.fulfilled, (state, action) => {
+      .addCase(DeleteUser.fulfilled, (state, action) => {
         return {
           ...state,
-          todos: state.todos.filter((item) => item.id !== action.payload)
+          users: state.users.filter((item) => item.id !== action.payload)
+        };
+      })
+      .addCase(UpdateUser.fulfilled, (state, action) => {
+        const {
+          payload:{id, name},
+        } = action;
+        return {
+          ...state,
+          users: state.users.map((item) => item.id === id ? { ...item, name } : item
+          )
         }
       })
   }

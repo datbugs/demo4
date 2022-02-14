@@ -1,29 +1,29 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "../../stores";
 
-const ListSelector = (state:RootState) => state;
+const ListSelector = (state: RootState) => state;
 
 export const FollowSelector = createSelector(
-    ListSelector, (state) => {
-        return state.couterlist;
-    }
+  ListSelector, (state) => {
+    return state.couterlist;
+  }
 );
 export const FriendSelector = createSelector(
-    ListSelector, (state) => {
-        return state.couterlist;
-    }
+  ListSelector, (state) => {
+    return state.couterlist;
+  }
 );
-
-const getTodos = (state:RootState) => state.couterlist.todos;
-// reselect function
-export const getTodosState = createSelector([getTodos], (todos) => {
-  const list = todos.map((item) => ({
+const getList = (state: RootState) => state.couterlist.users;
+export const getListState = createSelector([getList], (users) => {
+  const listUser = users.map((item) => ({
     id: item.id,
-    title: item.title + " le quoc dat"
+    name: item.name
   }));
-  console.log(list);
-  return list;
+  console.log(listUser)
+  return listUser;
+
 });
+
 
 
 

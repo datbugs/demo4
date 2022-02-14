@@ -1,4 +1,4 @@
-export interface ITodoItem{
+export interface IUserItem {
   id: string;
-  title: string;
+  name: string;
 }
