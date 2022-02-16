@@ -13,17 +13,6 @@ export const FriendSelector = createSelector(
     return state.couterlist;
   }
 );
-const getList = (state: RootState) => state.couterlist.users;
-export const getListState = createSelector([getList], (users) => {
-  const listUser = users.map((item) => ({
-    id: item.id,
-    name: item.name
-  }));
-  console.log(listUser)
-  return listUser;
+const getList = (state: RootState) => state.couterlist;
 
-});
-
-
-
-
+export const getListState = createSelector([getList], ({data}) => data);

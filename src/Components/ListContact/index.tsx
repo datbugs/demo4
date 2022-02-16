@@ -1,33 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from "uuid";
 import { Row, Typography, Button, Input } from 'antd';
 import { Container } from 'react-bootstrap';
 import "./style.css";
-import { v4 as uuidv4 } from "uuid";
 import { AppDispatch } from '../../stores';
 import { FriendSelector, FollowSelector, getListState } from './Selector';
-import { CouterFriend, CouterFollow, AddUser, DeleteUser, UpdateUser } from './Thunk';
+import { CouterFriend, CouterFollow, AddUser, DeleteUser, UpdateUser, fetchUserThunk } from './Thunk';
 
 const { Title } = Typography;
 
 export const ListContact = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const { friend } = useSelector(FriendSelector);
   const { follow } = useSelector(FollowSelector);
-  console.log(friend);
-  // console.log(follow);
+  const listUser = useSelector(getListState);
   const [nameInput, setNameInput] = useState("");
-  console.log(nameInput);
   const [searchInput, setSearchInput] = useState("");
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    dispatch(fetchUserThunk(true));
+  }, [dispatch]);
+
+  const x = useMemo(() => { }, []);
+
+  const handleSubmit = useCallback(() => {
+    clearInputs();
+    // dispatch(AddUser({ id: uuidv4(), first_name: nameInput }));
+  }, []);
+
+  const clearInputs = () => {
     setNameInput("");
-    dispatch(AddUser({ id: uuidv4(), name: nameInput }));
   };
-  const listUser = useSelector(getListState);
-  console.log(listUser)
-  const dispatch = useDispatch<AppDispatch>()
-
-
 
   return (
     <Container className='listcontact-info'>
@@ -47,27 +51,21 @@ export const ListContact = () => {
       <Row>
         <Button onClick={() => dispatch(CouterFollow(follow + 1))} type="primary">Follow {follow}</Button>
       </Row>
-      <>
-        {listUser.filter((user) => {
-          if (searchInput == "") {
-            return user
-          } else if (user.name.toLowerCase().includes(searchInput.toLowerCase())) {
-            return user
-          }
-        }).map((user, index) => (
-          <div key={index}>
-            <span>{user.name}</span>
-            <div className="bth-item">
-              <Button type="primary">Sửa</Button>
-              <Button onClick={() => dispatch(DeleteUser(user.id))} type="primary" danger>Xóa</Button>
-            </div>
+      {listUser && listUser.data.filter((data) => {
+        if (searchInput == "") {
+          return data
+        } else if (data.first_name.toLowerCase().includes(searchInput.toLowerCase())) {
+          return data
+        }
+      }).map((data, index) => (
+        <div key={index}>
+          <span>{data.first_name}</span>
+          <div className="bth-item">
+            <Button type="primary">Sửa</Button>
+            {/* <Button onClick={() => dispatch(DeleteUser(data.id))} type="primary" danger>Xóa</Button> */}
           </div>
-
-        ))}
-      </>
-
-
-
+        </div>
+      ))}
     </Container>
   )
 }

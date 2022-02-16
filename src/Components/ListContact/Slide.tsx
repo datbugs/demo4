@@ -1,35 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "stores";
-import { getTextOfJSDocComment } from "typescript";
-import { IUserItem } from "./interface";
-import { CouterFriend, CouterFollow, AddUser, DeleteUser, UpdateUser } from './Thunk'
+import { IData, DataDetail } from "./interface";
+import { CouterFriend, CouterFollow, AddUser, DeleteUser, UpdateUser, fetchUserThunk } from './Thunk'
 
 
 
 export interface ListState {
   follow: number,
   friend: number,
-  users: IUserItem[],
+  data: IData | null,
 
 }
 
 const initialState: ListState = {
   follow: 0,
   friend: 0,
-  users: [
-    {
-      id: "1a",
-      name: "Đạt",
-    },
-    {
-      id: "1b",
-      name: "Đức",
-    },
-    {
-      id: "1c",
-      name: "Dũng",
-    },
-  ],
+  data: null,
 }
 
 const listSlice = createSlice({
@@ -37,42 +22,72 @@ const listSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(CouterFollow.fulfilled, (state, action) => {
-        return {
-          ...state,
-          follow: action.payload,
-        };
-      })
-      .addCase(CouterFriend.fulfilled, (state, action) => {
-        return {
-          ...state,
-          friend: action.payload,
-        };
-      })
-      .addCase(AddUser.fulfilled, (state, action) => {
-        console.log(action.payload)
-        return {
-          ...state,
-          users: [...state.users, action.payload]
-        };
-      })
-      .addCase(DeleteUser.fulfilled, (state, action) => {
-        return {
-          ...state,
-          users: state.users.filter((item) => item.id !== action.payload)
-        };
-      })
-      .addCase(UpdateUser.fulfilled, (state, action) => {
-        const {
-          payload:{id, name},
-        } = action;
-        return {
-          ...state,
-          users: state.users.map((item) => item.id === id ? { ...item, name } : item
-          )
-        }
-      })
+    builder.addCase(fetchUserThunk.fulfilled, (state, action) => ({
+      ...state,
+      data: action.payload,
+    }));
+    builder.addCase(CouterFollow.fulfilled, (state, action) => ({
+      ...state,
+      follow: action.payload,
+    }
+    ));
+    builder.addCase(CouterFriend.fulfilled, (state, action) => ({
+      ...state,
+      friend: action.payload,
+    }
+    ));
+    builder.addCase(AddUser.fulfilled, (state, action) => ({
+      ...state,
+      data: action.payload,
+    }
+    ));
+    // builder.addCase(DeleteUser.fulfilled, (state, action) => ({
+    //   ...state,
+    //       state.data = state.data.filter((item) => item.id !== action.payload)
+
+    // }))
+    // builder
+    //   .addCase(CouterFollow.fulfilled, (state, action) => {
+    //     return {
+    //       ...state,
+    //       follow: action.payload,
+    //     };
+    //   })
+    //   .addCase(CouterFriend.fulfilled, (state, action) => {
+    //     return {
+    //       ...state,
+    //       friend: action.payload,
+    //     };
+    //   })
+    //   .addCase(fetchUserThunk.fulfilled, (state, action) => {
+    //     console.log(action.payload.data.first_name, 'add')
+    //     return {
+    //       ...state,
+    //       data: [...state.data, action.payload]
+    //     };
+    //   })
+    //   .addCase(AddUser.fulfilled, (state, action) => {
+    //     return {
+    //       ...state,
+    //       data: [...state.data, action.payload]
+    //     };
+    //   })
+    //   .addCase(DeleteUser.fulfilled, (state, action) => {
+    //     return {
+    //       ...state,
+    //       data: state.data.filter((item) => item.id !== action.payload)
+    //     };
+    //   })
+    //   .addCase(UpdateUser.fulfilled, (state, action) => {
+    //     const {
+    //       payload:{id, first_name},
+    //     } = action;
+    //     return {
+    //       ...state,
+    //       data: state.data.map((item) => item.id === id ? { ...item, first_name } : item
+    //       )
+    //     }
+    //   })
   }
 })
 
