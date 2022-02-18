@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IData, DataDetail } from "./interface";
+import { IData, IDataModelType, IDataDetailModel } from "./interface";
+import { dataModels } from './API/data'
 import { CouterFriend, CouterFollow, AddUser, DeleteUser, UpdateUser, fetchUserThunk } from './Thunk'
+import { height } from "@mui/system";
 
 
 
@@ -8,6 +10,8 @@ export interface ListState {
   follow: number,
   friend: number,
   data: IData | null,
+  model: IDataModelType | null,
+  detailmodel: IDataDetailModel | null,
 
 }
 
@@ -15,7 +19,31 @@ const initialState: ListState = {
   follow: 0,
   friend: 0,
   data: null,
+  model: null,
+  detailmodel: null,
 }
+
+
+const dataDemo: Array<IDataModelType> = Object.values(dataModels);
+
+export const listDemo = dataDemo.map((model, index) => {
+  return model
+})
+
+const dataDetail: Array<IDataDetailModel> = [];
+Object.keys(dataModels).forEach(key => {
+  dataDetail.push({
+    id: dataModels[key].model_id,
+    name: dataModels[key].model_name,
+    type: dataModels[key].model_type,
+    position: {
+      latitude: dataModels[key].latitude,
+      longitude: dataModels[key].longitude,
+      altitude: dataModels[key].height,
+    },
+    size: dataModels[key].size,
+  })
+});
 
 const listSlice = createSlice({
   name: 'couterlist',

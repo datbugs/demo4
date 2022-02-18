@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from "uuid";
-import { Row, Typography, Button, Input } from 'antd';
+import { Row, Typography, Button, Input} from 'antd';
 import { Container } from 'react-bootstrap';
 import "./style.css";
 import { AppDispatch } from '../../stores';
-import { FriendSelector, FollowSelector, getListState } from './Selector';
+import { FriendSelector, FollowSelector, getListState, getModelState } from './Selector';
 import { CouterFriend, CouterFollow, AddUser, DeleteUser, UpdateUser, fetchUserThunk } from './Thunk';
+import { listDemo } from './Slide';
 
-const { Title } = Typography;
+const { Title,Text  } = Typography;
 
 export const ListContact = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { friend } = useSelector(FriendSelector);
   const { follow } = useSelector(FollowSelector);
   const listUser = useSelector(getListState);
+  const list = useSelector(getModelState);
   const [nameInput, setNameInput] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
@@ -44,7 +46,6 @@ export const ListContact = () => {
         <Button onClick={handleSubmit} type="primary">Submit</Button>
       </Input.Group>
 
-
       <Row>
         <Button onClick={() => dispatch(CouterFriend(friend + 1))} type="primary">Friend {friend}</Button>
       </Row>
@@ -62,8 +63,13 @@ export const ListContact = () => {
           <span>{data.first_name}</span>
           <div className="bth-item">
             <Button type="primary">Sửa</Button>
-            {/* <Button onClick={() => dispatch(DeleteUser(data.id))} type="primary" danger>Xóa</Button> */}
+            <Button type="primary" danger>Xóa</Button>
           </div>
+        </div>
+      ))}
+      {listDemo.map((item) => (
+        <div key={item.model_id}>
+          <Text type="success">{item.model_name}</Text>
         </div>
       ))}
     </Container>

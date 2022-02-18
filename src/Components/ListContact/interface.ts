@@ -10,6 +10,33 @@ export interface DataDetail {
   last_name: string;
   avatar: string;
 }
+export interface IDataModelType {
+  model_id: number;
+  model_name: string;
+  model_type: string;
+  latitude: number;
+  longitude: number;
+  height: number;
+  size: {
+    x: number;
+    y: number;
+  };
+}
+
+export interface IDataDetailModel {
+  id: number;
+  name: string;
+  type: string;
+  position: {
+    latitude: number;
+    longitude: number;
+    altitude: number;
+  },
+  size: {
+    x: number;
+    y: number;
+  };
+}
 
 export interface IData {
   page: number;
@@ -21,4 +48,6 @@ export interface IData {
     url: string;
     text: string;
   };
+  model: Array<IDataModelType>;
+  detailmodel: Array<IDataModelType>;
 }

@@ -15,4 +15,8 @@ export const FriendSelector = createSelector(
 );
 const getList = (state: RootState) => state.couterlist;
 
-export const getListState = createSelector([getList], ({data}) => data);
+export const getListState = createSelector([getList], ({ data }) => data);
+
+const getModel = (state: RootState) => state.couterlist;
+
+export const getModelState = createSelector([getModel], ({ model }) => model);

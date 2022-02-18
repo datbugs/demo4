@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../Components/ListContact/Slide'
+import tableSlide from '../Components/Table/tableSlide'
 
 export const store = configureStore({
   reducer: {
     couterlist: counterReducer,
+    table: tableSlide,
   },
 })
 
