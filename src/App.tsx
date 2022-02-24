@@ -1,14 +1,15 @@
 import './App.css';
 import 'antd/dist/antd.css'
 import { About, Biography, Contact, TableUser, Events, Footer, Friends, Header, Headermenu, Profile, Pictures, ListContact } from './Components'
+import DemoChart from 'Components/Chart';
 // import { useDispatch } from "react-redux";
-// import { fetchUserThunk } from "./Components/ListContact/Thunk";
 // import { useEffect } from "react";
+// import { fetchDataThunk } from 'Components/Table/tableThunk';
 
 function App() {
   // const dispatch = useDispatch();
   // useEffect(() => {
-  //   dispatch(fetchUserThunk());
+  //   dispatch(fetchDataThunk(true));
   // }, [dispatch]);
   return (
     <div className="App">
@@ -18,7 +19,8 @@ function App() {
       </div>
       <Profile />
       <Contact />
-      <TableUser/>
+      <DemoChart />
+      <TableUser />
       <ListContact />
       <Friends />
       <Pictures />

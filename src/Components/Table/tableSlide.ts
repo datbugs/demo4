@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { fetchDataThunk } from './tableThunk';
+import { fetchDataThunk, removeUserThunk } from './tableThunk';
 import { Item } from './interface';
 
 export interface TableState {
-  dataTable: Item[],
+  dataUser: Item[],
 }
 
 const initialState: TableState = {
-  dataTable: [],
+  dataUser: [],
 }
 
 const tableSlide = createSlice({
@@ -15,23 +15,17 @@ const tableSlide = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchDataThunk.fulfilled, (state, action) => {
-      state.dataTable = action.payload;
+    builder.addCase(fetchDataThunk.fulfilled, (state, action) => ({
+      ...state,
+      demo: action.payload,
+    }));
+    builder.addCase(removeUserThunk.fulfilled, (state, action) => {
+      state.dataUser = state.dataUser.filter((item) => item.id !== action.payload);
+      console.log("thành công remove dữ liệu", );
     });
 
   }
 
 });
-// const dataUser = Object.values(dataTable);
-
-
-// export const listDataTable = dataUser.map((item, index) => {
-//   console.log(item, "datatable")
-//   return item;
-// })
-
-// export const dataList = selectedRows.map.map((data, index) => {
-
-// })
 
 export default tableSlide.reducer

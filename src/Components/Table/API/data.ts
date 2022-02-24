@@ -1,6 +1,6 @@
 import { Item } from '../interface'
 
-export const dataTable: Item[] = [
+ const dataTable = [
   {
     id:"1",
     key: '1',

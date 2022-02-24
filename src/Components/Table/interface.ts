@@ -8,6 +8,7 @@ export interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   selectedRows: Item;
   index: number;
   children: React.ReactNode;
+  item: Item;
 }
 //---------------------------//
 export interface Item {
@@ -19,4 +20,6 @@ export interface Item {
   email: string;
   address: string;
   description: string;
+  point: number;
+  wage: number;
 }

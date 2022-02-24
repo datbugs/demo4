@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Input, Modal, Popconfirm, Form, Typography, Radio, Divider, Space, Button } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Item, EditableCellProps } from './interface';
-import { dataTable } from './API/data';
 import { TableModal } from './Modal';
 import { TableModalDetail } from './Modal Detail';
+import TableAPI from './API/tableAPI';
+import { removeUserThunk } from './tableThunk';
+import { useDispatch, useSelector } from 'react-redux';
+import { getListData } from './tableSelector';
 
 
 
@@ -47,41 +50,57 @@ const EditableCell: React.FC<EditableCellProps> = ({
 };
 
 export const TableUser = () => {
+  const dispatch = useDispatch();
   const [selectionType, setSelectionType] = useState<'checkbox' | 'radio'>('checkbox');
   const [form] = Form.useForm();
-  const [data, setData] = useState(dataTable);
   const [editingKey, setEditingKey] = useState('');
   const [dataCheckbox, setDataCheckbox] = useState<Item[]>([])
-  const isEditing = (record: Item) => record.key === editingKey;
+  const isEditing = (record: Item) => record.id === editingKey;
+  const [dataUser, setDataUser] = useState<Item[]>([])
 
-  console.log("dataCheckbox ", dataCheckbox);
+  useEffect(() => {
 
-  const edit = (record: Partial<Item> & { key: React.Key }) => {
+    const fetchData = async () => {
+      try {
+        const response = await TableAPI.getAll();
+        console.log(response.data, "dataaaaaaaaaaabbb")
+        setDataUser(response.data);
+        return response.data
+      } catch (error) {
+        console.log(error, "Error")
+      }
+    }
+    
+    fetchData();
+
+  }, []);
+
+  const edit = (record: Partial<Item> & { id: React.Key }) => {
     form.setFieldsValue({ name: '', email: '', address: '', ...record });
-    setEditingKey(record.key);
+    setEditingKey(record.id);
   };
 
   const cancel = () => {
     setEditingKey('');
   };
 
-  const save = async (key: React.Key) => {
+  const save = async (id: React.Key) => {
     try {
       const row = (await form.validateFields()) as Item;
 
-      const newData = [...data];
-      const index = newData.findIndex(item => key === item.key);
+      const newData = [...dataUser];
+      const index = newData.findIndex(item => id === item.id);
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
           ...item,
           ...row,
         });
-        setData(newData);
+        setDataUser(newData);
         setEditingKey('');
       } else {
         newData.push(row);
-        setData(newData);
+        setDataUser(newData);
         setEditingKey('');
       }
     } catch (errInfo) {
@@ -101,6 +120,12 @@ export const TableUser = () => {
       editable: true,
     },
     {
+      title: 'Age',
+      dataIndex: 'age',
+      width: '10%',
+      editable: true,
+    },
+    {
       title: 'Email',
       dataIndex: 'email',
       width: '15%',
@@ -110,6 +135,18 @@ export const TableUser = () => {
       title: 'Address',
       dataIndex: 'address',
       width: '35%',
+      editable: true,
+    },
+    {
+      title: 'Wage($)',
+      dataIndex: 'wage',
+      width: '10%',
+      editable: true,
+    },
+    {
+      title: 'Point',
+      dataIndex: 'point',
+      width: '10%',
       editable: true,
     },
     {
@@ -126,7 +163,7 @@ export const TableUser = () => {
             const editable = isEditing(record);
             return editable ? (
               <span>
-                <Typography.Link onClick={() => save(record.key)} style={{ marginRight: 8 }}>
+                <Typography.Link onClick={() => save(record.id)} style={{ marginRight: 8 }}>
                   Save
                 </Typography.Link>
                 <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
@@ -147,12 +184,13 @@ export const TableUser = () => {
           width: 100,
           render: (_: any, record: Item) => (
             <Space size="middle">
-                  <Button
-                      onClick={() => { handleDelete(record) }}
-                      type="link"
-                  >
-                      Delete
-                  </Button>
+              <Button
+                onClick={() => { handleDelete(record) }}
+                // onClick={() => dispatch(removeUserThunk(record.id))}
+                type="link"
+              >
+                Delete
+              </Button>
             </Space>
           ),
         },
@@ -162,7 +200,6 @@ export const TableUser = () => {
           render: (_: any, record: Item) => (
             <Space size="middle">
               <TableModal item={record} />
-              {/* <TableModalDetail item={record}/> */}
             </Space>
           ),
         },
@@ -183,8 +220,9 @@ export const TableUser = () => {
       cancelText: 'No',
       onOk() {
         console.log('OK', record);
-        setData(dataTable => {
-          return dataTable.filter(item => item.id !== record.id)
+        // removeUserThunk(record.id)
+        setDataUser(dataUser => {
+          return dataUser.filter(item => item.id !== record.id)
         })
       },
       onCancel() {
@@ -210,16 +248,16 @@ export const TableUser = () => {
   });
 
   // rowSelection object indicates the need for row selection
-const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows: Item[]) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-    setDataCheckbox(selectedRows);
-  },
-  getCheckboxProps: (record: Item) => ({
-    disabled: record.name === 'Disabled User', // Column configuration not to be checked
-    name: record.name,
-  }),
-};
+  const rowSelection = {
+    onChange: (selectedRowKeys: React.Key[], selectedRows: Item[]) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+      setDataCheckbox(selectedRows);
+    },
+    getCheckboxProps: (record: Item) => ({
+      disabled: record.name === 'Disabled User', // Column configuration not to be checked
+      name: record.name,
+    }),
+  };
 
   return (
     <Form form={form} component={false}>
@@ -231,17 +269,14 @@ const rowSelection = {
       >
         <Radio value="checkbox">Checkbox</Radio>
         <Radio value="radio">Radio</Radio>
-        <Button type='link'><TableModalDetail dataCheckbox={dataCheckbox} /></Button>
+        <TableModalDetail dataCheckbox={dataCheckbox} />
       </Radio.Group>
 
       <Divider />
       <Table
         rowSelection={{
           type: selectionType,
-          ...rowSelection, 
-          onSelect: (record) => {
-          }
-        
+          ...rowSelection,
         }}
         components={{
           body: {
@@ -253,7 +288,7 @@ const rowSelection = {
           expandedRowRender: record => <p style={{ margin: 0 }}>{record.description}</p>,
           rowExpandable: record => record.name !== 'Not Expandable',
         }}
-        dataSource={data}
+        dataSource={dataUser}
         columns={mergedColumns}
         rowClassName="editable-row"
         pagination={{
